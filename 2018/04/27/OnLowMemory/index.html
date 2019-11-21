@@ -1,0 +1,230 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>低内存优化 - Lollipop</title>
+    <meta name="baidu-site-verification" content="lGVNqFPfNO" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Lollipop,"> 
+    <meta name="description" content="A simple blog site,概念介绍
+在LRU整个列表中，你消耗越少的内存，留在列表里的机会就更大
+
+
+OnLowMemory：所有后台程序（优先级为background的进程，不是指后台运行的进程）都被杀死时，在系统内存还不,"> 
+    <meta name="author" content="Lollipop"> 
+    <link rel="alternative" href="atom.xml" title="Lollipop" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <link rel="stylesheet" href="/css/diaspora.css">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads"
+        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+</head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">Lollipop</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;" target="_blank" rel="noopener" data-url="http://lollipoppp.com"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">低内存优化</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" target="_blank" rel="noopener" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;" target="_blank" rel="noopener"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">低内存优化</h1>
+        <div class="stuff">
+            <span>四月 27, 2018</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E2%80%9CAndroid%E2%80%9D/" rel="tag">“Android”</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h2 id="概念介绍"><a href="#概念介绍" class="headerlink" title="概念介绍"></a>概念介绍</h2><blockquote>
+<p>在LRU整个列表中，你消耗越少的内存，留在列表里的机会就更大</p>
+</blockquote>
+<blockquote>
+<p>OnLowMemory：所有后台程序（优先级为background的进程，不是指后台运行的进程）都被杀死时，在系统内存还不足时，系统会调用OnLowMemory</p>
+</blockquote>
+<blockquote>
+<p>OnTrimMemory：Android 4.0之后提供的API，系统会根据不同的内存状态来回调</p>
+</blockquote>
+<blockquote>
+<p>在内存紧张的时候，会回调OnLowMemory/OnTrimMemory，需要在回调方法中编写释放资源的代码。<br>可以在资源紧张的时候，释放UI 使用的资源资：Bitmap、数组、控件资源</p>
+</blockquote>
+<h2 id="OnLowMemory"><a href="#OnLowMemory" class="headerlink" title="OnLowMemory"></a>OnLowMemory</h2><ul>
+<li>Application.onLowMemory()</li>
+<li>Activity.OnLowMemory()</li>
+<li>Fragement.OnLowMemory()</li>
+<li>Service.OnLowMemory()</li>
+<li>ContentProvider.OnLowMemory()</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span></span></span><br><span class="line"><span class="class">    <span class="keyword">implements</span> <span class="title">ComponentCallbacks2</span> </span>&#123;</span><br><span class="line">    <span class="comment">// Other activity code ...</span></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Release memory when the UI becomes hidden or when system resources become low.</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> level the memory-related event that was raised.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onTrimMemory</span><span class="params">(<span class="keyword">int</span> level)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// Determine which lifecycle or system event was raised.</span></span><br><span class="line">        <span class="keyword">switch</span> (level) &#123;</span><br><span class="line">            <span class="keyword">case</span> ComponentCallbacks2.TRIM_MEMORY_UI_HIDDEN:</span><br><span class="line">                <span class="comment">/*</span></span><br><span class="line"><span class="comment">                   Release any UI objects that currently hold memory.</span></span><br><span class="line"><span class="comment">                   The user interface has moved to the background.</span></span><br><span class="line"><span class="comment">                */</span></span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> ComponentCallbacks2.TRIM_MEMORY_RUNNING_MODERATE:</span><br><span class="line">            <span class="keyword">case</span> ComponentCallbacks2.TRIM_MEMORY_RUNNING_LOW:</span><br><span class="line">            <span class="keyword">case</span> ComponentCallbacks2.TRIM_MEMORY_RUNNING_CRITICAL:</span><br><span class="line">                <span class="comment">/*</span></span><br><span class="line"><span class="comment">                   Release any memory that your app doesn't need to run.</span></span><br><span class="line"><span class="comment">                   The device is running low on memory while the app is running.</span></span><br><span class="line"><span class="comment">                   The event raised indicates the severity of the memory-related event.</span></span><br><span class="line"><span class="comment">                   If the event is TRIM_MEMORY_RUNNING_CRITICAL, then the system will</span></span><br><span class="line"><span class="comment">                   begin killing background processes.</span></span><br><span class="line"><span class="comment">                */</span></span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> ComponentCallbacks2.TRIM_MEMORY_BACKGROUND:</span><br><span class="line">            <span class="keyword">case</span> ComponentCallbacks2.TRIM_MEMORY_MODERATE:</span><br><span class="line">            <span class="keyword">case</span> ComponentCallbacks2.TRIM_MEMORY_COMPLETE:</span><br><span class="line">                <span class="comment">/*</span></span><br><span class="line"><span class="comment">                   Release as much memory as the process can.</span></span><br><span class="line"><span class="comment">                   The app is on the LRU list and the system is running low on memory.</span></span><br><span class="line"><span class="comment">                   The event raised indicates where the app sits within the LRU list.</span></span><br><span class="line"><span class="comment">                   If the event is TRIM_MEMORY_COMPLETE, the process will be one of</span></span><br><span class="line"><span class="comment">                   the first to be terminated.</span></span><br><span class="line"><span class="comment">                */</span></span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">default</span>:</span><br><span class="line">                <span class="comment">/*</span></span><br><span class="line"><span class="comment">                  Release any non-critical data structures.</span></span><br><span class="line"><span class="comment">                  The app received an unrecognized memory level value</span></span><br><span class="line"><span class="comment">                  from the system. Treat this as a generic low-memory message.</span></span><br><span class="line"><span class="comment">                */</span></span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//再通过Context.registerComponentCallbacks(ComponentCallbacks callback)注册</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="OnTrimMemory"><a href="#OnTrimMemory" class="headerlink" title="OnTrimMemory"></a>OnTrimMemory</h2><ul>
+<li>Application.onTrimMemory(int level)</li>
+<li>Activity.onTrimMemory(int level)</li>
+<li>Fragement.OnTrimMemory(int level)</li>
+<li>Service.onTrimMemory(int level)</li>
+<li>ContentProvider.OnTrimMemory(int level)</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//level内存状态，紧急程度有高到低</span></span><br><span class="line">TRIM_MEMORY_COMPLETE = <span class="number">80</span>：内存不足，并且该进程在后台进程列表最后一个，马上就要被清理。基本与onLowMemory()情况相同；</span><br><span class="line">TRIM_MEMORY_MODERATE = <span class="number">60</span>：内存不足，并且该进程在后台进程列表的中部；</span><br><span class="line">TRIM_MEMORY_BACKGROUND = <span class="number">40</span>：内存不足，并且该进程是后台进程；</span><br><span class="line">TRIM_MEMORY_UI_HIDDEN = <span class="number">20</span>：内存不足，并且该进程的UI已经不可见了</span><br><span class="line"></span><br><span class="line"><span class="comment">//4.1之后增加的，是当我们的应用程序真正运行时的回调，紧急程度有高到低</span></span><br><span class="line">TRIM_MEMORY_RUNNING_CRITICAL = <span class="number">15</span>：内存不足(后台进程不足<span class="number">3</span>个)</span><br><span class="line">TRIM_MEMORY_RUNNING_LOW = <span class="number">10</span>：内存不足(后台进程不足<span class="number">5</span>个)</span><br><span class="line">TRIM_MEMORY_RUNNING_MODERATE = <span class="number">5</span>：内存不足(后台进程超过<span class="number">5</span>个)</span><br><span class="line"></span><br><span class="line"><span class="comment">//ComponentCallbacks2继承ComponentCallbacks，多了一个方法：</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">onTrimMemory</span><span class="params">(<span class="keyword">int</span> level)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="OnLowMemory和OnTrimMemory的比较"><a href="#OnLowMemory和OnTrimMemory的比较" class="headerlink" title="OnLowMemory和OnTrimMemory的比较"></a>OnLowMemory和OnTrimMemory的比较</h2><ol>
+<li>OnLowMemory 已经没有后台进程,系统内存还低，会被回调；而onTrimMemory被回调时，还有后台进程；</li>
+<li>OnLowMemory是在最后一个后台进程被杀时调用，一般情况是low memory killer 杀进程后触发；而OnTrimMemory的触发更频繁，每次计算进程优先级时，只要满足条件，都会触发</li>
+<li>通过一键清理后，OnLowMemory不会被触发，而OnTrimMemory会被触发一次</li>
+</ol>
+<h2 id="低内存时，下面几种资源需要进行释放"><a href="#低内存时，下面几种资源需要进行释放" class="headerlink" title="低内存时，下面几种资源需要进行释放"></a>低内存时，下面几种资源需要进行释放</h2><ul>
+<li>缓存：包括一些文件缓存，图片缓存等，在用户正常使用的时候这些缓存很有作用，但当你的应用程序UI不可见的时候，这些缓存就可以被清除以减少内存的使用．比如第三方图片库的缓存；</li>
+<li>动态生成动态添加的View：这些动态生成和添加的View且少数情况下才使用到的View，这时候可以被释放，下次使用的时候再进行动态生成即可</li>
+</ul>
+<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><h3 id="清除Bitmap"><a href="#清除Bitmap" class="headerlink" title="清除Bitmap"></a>清除Bitmap</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(bitmap != <span class="keyword">null</span> &amp;&amp; !bitmap.isRecycled())&#123;  </span><br><span class="line">    bitmap.recycle(); </span><br><span class="line">    bitmap = <span class="keyword">null</span>; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//主动释放ImageView的图片资源</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">recycleImageViewBitMap</span><span class="params">(ImageView imageView)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (imageView != <span class="keyword">null</span>) &#123;</span><br><span class="line">        BitmapDrawable bd = (BitmapDrawable) imageView.getDrawable();</span><br><span class="line">        rceycleBitmapDrawable(bd);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">rceycleBitmapDrawable</span><span class="params">(BitmapDrawable bitmapDrawable)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (bitmapDrawable != <span class="keyword">null</span>) &#123;</span><br><span class="line">        Bitmap bitmap = bitmapDrawable.getBitmap();</span><br><span class="line">        rceycleBitmap(bitmap);</span><br><span class="line">    &#125;</span><br><span class="line">    bitmapDrawable = <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">rceycleBitmap</span><span class="params">(Bitmap bitmap)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (bitmap != <span class="keyword">null</span> &amp;&amp; !bitmap.isRecycled()) &#123;</span><br><span class="line">        bitmap.recycle();</span><br><span class="line">        bitmap = <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//主动释放ImageView的背景资源</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">recycleBackgroundBitMap</span><span class="params">(ImageView view)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (view != <span class="keyword">null</span>) &#123;</span><br><span class="line">        BitmapDrawable bd = (BitmapDrawable) view.getBackground();</span><br><span class="line">        rceycleBitmapDrawable(bd);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">recycleImageViewBitMap</span><span class="params">(ImageView imageView)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (imageView != <span class="keyword">null</span>) &#123;</span><br><span class="line">        BitmapDrawable bd = (BitmapDrawable) imageView.getDrawable();</span><br><span class="line">        rceycleBitmapDrawable(bd);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">rceycleBitmapDrawable</span><span class="params">(BitmapDrawable bitmapDrawable)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (bitmapDrawable != <span class="keyword">null</span>) &#123;</span><br><span class="line">        Bitmap bitmap = bitmapDrawable.getBitmap();</span><br><span class="line">        rceycleBitmap(bitmap);</span><br><span class="line">    &#125;</span><br><span class="line">    bitmapDrawable = <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="清除UI"><a href="#清除UI" class="headerlink" title="清除UI"></a>清除UI</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//来自Launcher.java:</span></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onTrimMemory</span><span class="params">(<span class="keyword">int</span> level)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">super</span>.onTrimMemory(level);</span><br><span class="line">    <span class="keyword">if</span> (level &gt;= ComponentCallbacks2.TRIM_MEMORY_MODERATE) &#123;</span><br><span class="line">        mAppsCustomizeTabHost.onTrimMemory();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//AppsCustomizeTabHost.java:</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onTrimMemory</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    mContent.setVisibility(GONE);</span><br><span class="line">    <span class="comment">// Clear the widget pages of all their subviews - this will trigger the widget previews</span></span><br><span class="line">    <span class="comment">// to delete their bitmaps</span></span><br><span class="line">    mPagedView.clearAllWidgetPages();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//AppsCustomizePagedView.java:</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">clearAllWidgetPages</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    cancelAllTasks();</span><br><span class="line">    <span class="keyword">int</span> count = getChildCount();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; count; i++) &#123;</span><br><span class="line">        View v = getPageAt(i);</span><br><span class="line">        <span class="keyword">if</span> (v <span class="keyword">instanceof</span> PagedViewGridLayout) &#123;</span><br><span class="line">            ((PagedViewGridLayout) v).removeAllViewsOnPage();</span><br><span class="line">            mDirtyPageContent.set(i, <span class="keyword">true</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//PagedViewGridLayout.java</span></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">removeAllViewsOnPage</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    removeAllViews();</span><br><span class="line">    mOnLayoutListener = <span class="keyword">null</span>;</span><br><span class="line">    setLayerType(LAYER_TYPE_NONE, <span class="keyword">null</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="清除Cache"><a href="#清除Cache" class="headerlink" title="清除Cache"></a>清除Cache</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(list != <span class="keyword">null</span>) &#123;</span><br><span class="line">    list.clear();</span><br><span class="line">    list = <span class="keyword">null</span>; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Contact，联系人</span></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onTrimMemory</span><span class="params">(<span class="keyword">int</span> level)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (level &gt;= ComponentCallbacks2.TRIM_MEMORY_MODERATE) &#123;</span><br><span class="line">        <span class="comment">// Clear the caches.  Note all pending requests will be removed too.</span></span><br><span class="line">        clear();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    mPendingRequests.clear();</span><br><span class="line">    mBitmapHolderCache.evictAll();</span><br><span class="line">    mBitmapCache.evictAll();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="关闭查询数据库游标"><a href="#关闭查询数据库游标" class="headerlink" title="关闭查询数据库游标"></a>关闭查询数据库游标</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Cursor cursor = getContentResolver().query(uri ...);</span><br><span class="line"><span class="keyword">if</span> (cursor.moveToNext()) &#123;</span><br><span class="line"> 	... ... </span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//改为：</span></span><br><span class="line">Cursor cursor = <span class="keyword">null</span>;</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  	cursor = getContentResolver().query(uri ...);</span><br><span class="line">	<span class="keyword">if</span> (cursor != <span class="keyword">null</span> &amp;&amp; cursor.moveToNext()) &#123;</span><br><span class="line">	... ... </span><br><span class="line">	&#125;</span><br><span class="line">	&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">		<span class="keyword">if</span> (cursor != <span class="keyword">null</span>) &#123;</span><br><span class="line">	<span class="keyword">try</span> &#123; </span><br><span class="line">		cursor.close();</span><br><span class="line">	&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">		<span class="comment">//ignore this</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="ListView缓存"><a href="#ListView缓存" class="headerlink" title="ListView缓存"></a>ListView缓存</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> View <span class="title">getView</span><span class="params">(<span class="keyword">int</span> position, View convertView, ViewGroup parent)</span> </span>&#123;</span><br><span class="line">     View view = <span class="keyword">new</span> Xxx(...);</span><br><span class="line">     ... ...</span><br><span class="line">     <span class="keyword">return</span> view;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//改为：</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> View <span class="title">getView</span><span class="params">(<span class="keyword">int</span> position, View convertView, ViewGroup parent)</span> </span>&#123;</span><br><span class="line">     View view = <span class="keyword">null</span>;</span><br><span class="line">     <span class="keyword">if</span> (convertView != <span class="keyword">null</span>) &#123;</span><br><span class="line">         view = convertView;</span><br><span class="line">         populate(view, getItem(position));</span><br><span class="line">         ...</span><br><span class="line">     &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">         view = <span class="keyword">new</span> Xxx(...);</span><br><span class="line">         ...</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">return</span> view;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="释放对象的引用"><a href="#释放对象的引用" class="headerlink" title="释放对象的引用"></a>释放对象的引用</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DemoActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> </span>&#123;</span><br><span class="line">	... ...</span><br><span class="line">	<span class="keyword">private</span> Handler mHandler = ...</span><br><span class="line">	<span class="keyword">private</span> Object obj;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">operation</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	 obj = initObj();</span><br><span class="line">	 ...</span><br><span class="line">	 [Mark]</span><br><span class="line">	 mHandler.post(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">	        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	         useObj(obj);</span><br><span class="line">	        &#125;</span><br><span class="line">	 &#125;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//可以在[Mark]的位置释放对象的引用，而代码可以修改为：</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">operation</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	obj = initObj();</span><br><span class="line">	...</span><br><span class="line">	<span class="keyword">final</span> Object o = obj;</span><br><span class="line">	obj = <span class="keyword">null</span>;</span><br><span class="line">	mHandler.post(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">	    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	        useObj(o);</span><br><span class="line">	    &#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="OnTrimMemory和onStop的关系"><a href="#OnTrimMemory和onStop的关系" class="headerlink" title="OnTrimMemory和onStop的关系"></a>OnTrimMemory和onStop的关系</h2><ul>
+<li>onTrimMemory()方法中的TRIM_MEMORY_UI_HIDDEN回调只有当我们程序中的所有UI组件全部不可见的时候才会触发</li>
+<li>onStop()方法只是当一个Activity完全不可见的时候就会调用。在onStop()方法中去释放一些Activity相关的资源，比如说取消网络连接或者注销广播接收器等</li>
+<li>onTrimMemory的TRIM_MEMORY_UI_HIDDEN 等级是在onStop方法之前调用的</li>
+</ul>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title='0' data-url='http://link.hhtjim.com/163/5146554.mp3'></li>
+                        
+                    
+                        
+                            <li title='1' data-url='http://link.hhtjim.com/qq/001faIUs4M2zna.mp3'></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class='side'>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#概念介绍"><span class="toc-number">1.</span> <span class="toc-text">概念介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OnLowMemory"><span class="toc-number">2.</span> <span class="toc-text">OnLowMemory</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OnTrimMemory"><span class="toc-number">3.</span> <span class="toc-text">OnTrimMemory</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OnLowMemory和OnTrimMemory的比较"><span class="toc-number">4.</span> <span class="toc-text">OnLowMemory和OnTrimMemory的比较</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#低内存时，下面几种资源需要进行释放"><span class="toc-number">5.</span> <span class="toc-text">低内存时，下面几种资源需要进行释放</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#例子"><span class="toc-number">6.</span> <span class="toc-text">例子</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#清除Bitmap"><span class="toc-number">6.1.</span> <span class="toc-text">清除Bitmap</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#清除UI"><span class="toc-number">6.2.</span> <span class="toc-text">清除UI</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#清除Cache"><span class="toc-number">6.3.</span> <span class="toc-text">清除Cache</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#关闭查询数据库游标"><span class="toc-number">6.4.</span> <span class="toc-text">关闭查询数据库游标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ListView缓存"><span class="toc-number">6.5.</span> <span class="toc-text">ListView缓存</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#释放对象的引用"><span class="toc-number">6.6.</span> <span class="toc-text">释放对象的引用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OnTrimMemory和onStop的关系"><span class="toc-number">7.</span> <span class="toc-text">OnTrimMemory和onStop的关系</span></a></li></ol>
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</html>

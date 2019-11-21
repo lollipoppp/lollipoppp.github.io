@@ -1,0 +1,306 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>MQTT简介 - Lollipop</title>
+    <meta name="baidu-site-verification" content="lGVNqFPfNO" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Lollipop,"> 
+    <meta name="description" content="A simple blog site,
+  MQTT(消息队列遥测传输) 是 ISO标准(ISO/IEC PRF 20922)下基于发布/订阅范式的消息协议。它工作在TCP/IP协议族上，是为硬件性能低下的远程设备以及网络状况糟糕的情况,"> 
+    <meta name="author" content="Lollipop"> 
+    <link rel="alternative" href="atom.xml" title="Lollipop" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <link rel="stylesheet" href="/css/diaspora.css">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads"
+        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+</head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">Lollipop</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;" target="_blank" rel="noopener" data-url="http://lollipoppp.com"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">MQTT简介</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" target="_blank" rel="noopener" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;" target="_blank" rel="noopener"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">MQTT简介</h1>
+        <div class="stuff">
+            <span>六月 27, 2018</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E2%80%9CMQTT%E2%80%9D/" rel="tag">“MQTT”</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <blockquote>
+<p>  <a href="https://legacy.gitbook.com/book/mcxiaoke/mqtt-cn/details" target="_blank" rel="noopener">MQTT(消息队列遥测传输)</a> 是 <a href="https://zh.wikipedia.org/wiki/%E5%9B%BD%E9%99%85%E6%A0%87%E5%87%86%E5%8C%96%E7%BB%84%E7%BB%87" target="_blank" rel="noopener">ISO标准</a>(ISO/IEC PRF 20922)下基于<a href="https://zh.wikipedia.org/wiki/%E5%8F%91%E5%B8%83/%E8%AE%A2%E9%98%85" target="_blank" rel="noopener">发布/订阅</a>范式的消息协议。它工作在<a href="https://zh.wikipedia.org/wiki/TCP/IP%E5%8D%8F%E8%AE%AE%E6%97%8F" target="_blank" rel="noopener">TCP/IP协议族</a>上，是为硬件性能低下的远程设备以及网络状况糟糕的情况下而设计的发布/订阅型消息协议，为此，它需要一个<a href="https://zh.wikipedia.org/w/index.php?title=%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6" target="_blank" rel="noopener">消息中间件</a>。</p>
+<p>  <a href="https://zh.wikipedia.org/wiki/IBM" target="_blank" rel="noopener">IBM</a>公司的安迪·斯坦福-克拉克及 Cirrus Link 公司的阿兰·尼普于1999年撰写了该协议的第一个版本。</p>
+<p>  该协议的可用性取决于该协议的使用环境。IBM公司在2013年就向<a href="https://zh.wikipedia.org/wiki/%E7%B5%90%E6%A7%8B%E5%8C%96%E8%B3%87%E8%A8%8A%E6%A8%99%E6%BA%96%E4%BF%83%E9%80%B2%E7%B5%84%E7%B9%94" target="_blank" rel="noopener">结构化资讯标准促进组织</a>提交了 <strong>MQTT 3.1</strong> 版规范，并附有相关章程，以确保只能对规范进行少量更改。<a href="http://mqtt.org/new/wp-content/uploads/2009/06/MQTT-SN_spec_v1.2.pdf" target="_blank" rel="noopener">MQTT-SN</a>是针对非 <strong>TCP/IP</strong> 网络上的嵌入式设备主要协议的变种，与此类似的还有<a href="https://zh.wikipedia.org/wiki/ZigBee" target="_blank" rel="noopener">ZigBee</a>协议。</p>
+<p>  纵观行业的发展历程，“MQTT”中的“MQ” 是来自于 IBM 的 MQ 系列<a href="https://zh.wikipedia.org/wiki/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97" target="_blank" rel="noopener">消息队列</a>产品线。然而通常队列本身不需要作为标准功能来支持。</p>
+<p>  可选协议包含了高级消息队列协议，面向文本的消息传递协议，<a href="https://zh.wikipedia.org/wiki/%E4%BA%92%E8%81%94%E7%BD%91%E5%B7%A5%E7%A8%8B%E4%BB%BB%E5%8A%A1%E7%BB%84" target="_blank" rel="noopener">互联网工程任务组</a>约束应用协议，<a href="https://zh.wikipedia.org/wiki/%E5%8F%AF%E6%89%A9%E5%B1%95%E6%B6%88%E6%81%AF%E4%B8%8E%E5%AD%98%E5%9C%A8%E5%8D%8F%E8%AE%AE" target="_blank" rel="noopener">可扩展消息与存在协议</a>，数据分发服务，<a href="https://zh.wikipedia.org/wiki/OPC_UA" target="_blank" rel="noopener">OPC UA</a>以及 web 应用程序消息传递协议。<br>– 以上内容摘自<a href="https://zh.wikipedia.org/wiki/Wikipedia:%E9%A6%96%E9%A1%B5" target="_blank" rel="noopener">维基百科</a> –</p>
+</blockquote>
+<h2 id="EMQ-2-0"><a href="#EMQ-2-0" class="headerlink" title="EMQ 2.0"></a><a href="http://emqtt.com/docs/v2/getstarted.html" target="_blank" rel="noopener">EMQ 2.0</a></h2><blockquote>
+<p><em>EMQ (Erlang/Enterprise/Elastic MQTT Broker)</em> 是基于 <strong>Erlang/OTP</strong> 平台开发的开源物联网 <strong>MQTT</strong> 消息服务器。<strong>Erlang/OTP</strong> 是出色的<strong>软实时(Soft-Realtime)、低延时(Low-Latency)、分布式(Distributed)</strong> 的语言平台。<strong>MQTT</strong> 是<strong>轻量的 (Lightweight)</strong> 、<strong>发布订阅模式 (PubSub)</strong> 的<strong>物联网消息协议</strong>。<br>  <strong>EMQ</strong> 项目设计目标是承载移动终端或物联网终端海量 <strong>MQTT</strong> 连接，并实现在海量物联网设备间快速低延时消息路由:</p>
+<ol>
+<li>稳定承载大规模的 <strong>MQTT</strong> 客户端连接，单服务器节点支持<strong>50万</strong>到<strong>100万</strong>连接。</li>
+<li>分布式节点集群，快速低延时的消息路由，单集群支持<strong>1000万</strong>规模的路由。</li>
+<li>消息服务器内扩展，支持定制多种认证方式、高效存储消息到后端数据库。</li>
+<li>完整物联网协议支持，<strong>MQTT、MQTT-SN、CoAP、WebSocket</strong> 或私有协议支持。</li>
+</ol>
+</blockquote>
+<h3 id="MQTT-发布订阅模式简述"><a href="#MQTT-发布订阅模式简述" class="headerlink" title="MQTT 发布订阅模式简述"></a>MQTT 发布订阅模式简述</h3><p>  <strong>MQTT</strong> 是 <strong>发布/订阅(Publish/Subscribe)</strong> 模式的消息协议，与 <a href="https://zh.wikipedia.org/wiki/Http" target="_blank" rel="noopener">HTTP</a> 协议<strong>请求响应(Request/Response)</strong> 模式不同。<br>  <strong>MQTT</strong> 发布者与订阅者之间通过 <strong>主题(Topic)</strong> 进行消息路由，<strong>主题 (Topic)</strong> 格式类似 <strong>Unix</strong> 文件路径，例如:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sensor/1/temperature </span><br><span class="line">chat/room/subject </span><br><span class="line">presence/user/feng </span><br><span class="line"><span class="meta">sensor/1/#</span><span class="bash"> </span></span><br><span class="line">sensor/+/temperature </span><br><span class="line">uber/drivers/joe/inbox</span><br></pre></td></tr></table></figure>
+
+<p>  <strong>主题(Topic)</strong> 支持 ‘+’ 、‘#’ 的通配符，‘+’ 通配一个层级，‘#’ 通配多个层级(必须在末尾)。<br>注解<br>  初接触MQTT协议的用户，通常会向通配符的’过滤主题’发布广播消息，MQTT 协议不支持这种模式，需从订阅侧设计广播主题(Topic)。 例如 Android 推送，向所有广州用户，推送某类本地消息，客户端获得 GIS 位置后，可订阅 ‘news/city/guangzhou’ 主题。
+  </p>
+<h3 id="EMQ安装"><a href="#EMQ安装" class="headerlink" title="EMQ安装"></a><a href="http://emqtt.com/docs/v2/install.html" target="_blank" rel="noopener">EMQ安装</a></h3><p><a href="http://emqtt.com/downloads" target="_blank" rel="noopener">下载地址</a></p>
+<h4 id="LINUX服务器安装-CENTOS"><a href="#LINUX服务器安装-CENTOS" class="headerlink" title="LINUX服务器安装(CENTOS)"></a>LINUX服务器安装(CENTOS)</h4><p>RPM 安装 (其他平台类似)</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> rpm -ivh emqttd-centos7-v2.1.2-1.el7.centos.x86_64.rpm</span></span><br></pre></td></tr></table></figure>
+
+<p>Erlang/OTP R19 依赖 lksctp-tools 库</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> yum install lksctp-tools</span></span><br></pre></td></tr></table></figure>
+
+<p><del>由于emqttd是用Erlang语言编写的，所以，在Linux下安装时，需要先安装Erlang。</del> 按需安装</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># 安装依赖库</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> sudo yum -y install make gcc gcc-c++ kernel-devel m4 ncurses-devel openssl-devel</span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># 获取源码包</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> wget http://www.erlang.org/download/otp_src_R13B04.tar.gz</span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># 解压、编译、安装</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> tar xfvz otp_src_R13B04.tar.gz</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> otp_src_R13B04/</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> ./configure --with-ssl</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> sudo make install</span></span><br></pre></td></tr></table></figure>
+<hr>
+<p><strong>EMQ</strong> 配置文件: </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/emqttd/emq.conf</span><br></pre></td></tr></table></figure>
+<p>插件配置文件: </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/emqttd/plugins/*.conf。</span><br></pre></td></tr></table></figure>
+<p>日志文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/var/log/emqttd</span><br></pre></td></tr></table></figure>
+<p>数据文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/var/lib/emqttd/</span><br></pre></td></tr></table></figure>
+<p>启动停止<br><del>$ systemctl start|stop|restart emqttd.service</del></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> emqttd console|start|stop|restart</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>console : 控制台运行，控制台输出状态信息，调试用<br>start : 守护进程模式启动<br>stop : 停止<br>restart : 重启</p>
+</blockquote>
+<p><strong>EMQ</strong> 消息服务器进程状态查询</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> emqttd_ctl status</span></span><br></pre></td></tr></table></figure>
+<p>正常情况下，查询命令返回：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> emqttd_ctl status</span></span><br><span class="line">Node 'emq@127.0.0.1' is started</span><br><span class="line">emqttd 2.3.9 is running</span><br></pre></td></tr></table></figure>
+<p><strong>EMQ</strong> 消息服务器状态监控 URL</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost:8080/status</span><br></pre></td></tr></table></figure>
+<p>管理页面（基于Dashboard插件）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">http://host:18083/</span><br><span class="line">如：http://123.123.123.123:18083 或 http://localhost:18083</span><br></pre></td></tr></table></figure>
+<p>Dashboard插件配置文件位置</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/emqttd/plugins/emq_dashboard.conf</span><br></pre></td></tr></table></figure>
+<p>默认配置内容</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># SSL Handshake timeout.</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">#</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># Value: Duration</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># dashboard.listener.https.handshake_timeout = 15s</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># See: 'listener.ssl.&lt;name&gt;.ciphers' in emq.conf</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">#</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># Value: Ciphers</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># dashboard.listener.https.ciphers = ECDHE-ECDSA-AES256-GCM-SHA384,ECDHE-RSA-AES256-GCM-SHA384,ECDHE-ECDSA-AES256-SHA384,ECDHE-RSA-AES256-SHA384,ECDHE-ECDSA-DES-CBC3-SHA,ECDH-ECDSA-AES256-GCM-SHA384,ECDH-RSA-AES256-GCM-SHA384,ECDH-ECDSA-AES256-SHA384,ECDH-RSA-AES256-SHA384,DHE-DSS-AES256-GCM-SHA384,DHE-DSS-AES256-SHA256,AES256-GCM-SHA384,AES256-SHA256,ECDHE-ECDSA-AES128-GCM-SHA256,ECDHE-RSA-AES128-GCM-SHA256,ECDHE-ECDSA-AES128-SHA256,ECDHE-RSA-AES128-SHA256,ECDH-ECDSA-AES128-GCM-SHA256,ECDH-RSA-AES128-GCM-SHA256,ECDH-ECDSA-AES128-SHA256,ECDH-RSA-AES128-SHA256,DHE-DSS-AES128-GCM-SHA256,DHE-DSS-AES128-SHA256,AES128-GCM-SHA256,AES128-SHA256,ECDHE-ECDSA-AES256-SHA,ECDHE-RSA-AES256-SHA,DHE-DSS-AES256-SHA,ECDH-ECDSA-AES256-SHA,ECDH-RSA-AES256-SHA,AES256-SHA,ECDHE-ECDSA-AES128-SHA,ECDHE-RSA-AES128-SHA,DHE-DSS-AES128-SHA,ECDH-ECDSA-AES128-SHA,ECDH-RSA-AES128-SHA,AES128-SHA</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># See: 'listener.ssl.&lt;name&gt;.secure_renegotiate' in emq.conf</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">#</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># Value: on | off</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># dashboard.listener.https.secure_renegotiate = off</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># See: 'listener.ssl.&lt;name&gt;.reuse_sessions' in emq.conf</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">#</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># Value: on | off</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># dashboard.listener.https.reuse_sessions = on</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># See: 'listener.ssl.&lt;name&gt;.honor_cipher_order' in emq.conf</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">#</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># Value: on | off</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># dashboard.listener.https.honor_cipher_order = on</span></span></span><br></pre></td></tr></table></figure>
+<p>可选参数还有</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># HTTP Listener</span></span></span><br><span class="line">dashboard.listener.http = 18083</span><br><span class="line">dashboard.listener.http.acceptors = 2</span><br><span class="line">dashboard.listener.http.max_clients = 512</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># HTTPS Listener</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># dashboard.listener.https = 18084</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># dashboard.listener.https.acceptors = 2</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># dashboard.listener.https.max_clients = 512</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># dashboard.listener.https.handshake_timeout = 15</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># dashboard.listener.https.certfile = etc/certs/cert.pem</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># dashboard.listener.https.keyfile = etc/certs/key.pem</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># dashboard.listener.https.cacertfile = etc/certs/cacert.pem</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># dashboard.listener.https.verify = verify_peer</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># dashboard.listener.https.fail_if_no_peer_cert = true</span></span></span><br></pre></td></tr></table></figure>
+
+<h3 id="MQTT-EMQ-使用"><a href="#MQTT-EMQ-使用" class="headerlink" title="MQTT(EMQ)使用"></a>MQTT(EMQ)使用</h3><h4 id="关键字介绍"><a href="#关键字介绍" class="headerlink" title="关键字介绍"></a>关键字介绍</h4><p>网络连接 NETWORK CONNECTION</p>
+<blockquote>
+<p>MQTT使用的底层传输协议基础设施。</p>
+<ul>
+<li>客户端使用它连接服务端。</li>
+<li>它提供有序的、可靠的、双向字节流传输。</li>
+</ul>
+</blockquote>
+<p>应用消息 APPLICATION MESSAGE</p>
+<blockquote>
+<p>MQTT协议通过网络传输应用数据。应用消息通过MQTT传输时，它们有关联的服务质量（QoS）和主题（Topic）。</p>
+</blockquote>
+<p>客户端 CLIENT</p>
+<blockquote>
+<p>使用MQTT的程序或设备。客户端总是通过网络连接到服务端。它可以</p>
+<ul>
+<li>发布应用消息给其它相关的客户端。</li>
+<li>订阅以请求接受相关的应用消息。</li>
+<li>取消订阅以移除接受应用消息的请求。</li>
+<li>从服务端断开连接。</li>
+</ul>
+</blockquote>
+<p>服务端 SERVER</p>
+<blockquote>
+<p>一个程序或设备，作为发送消息的客户端和请求订阅的客户端之间的中介。服务端</p>
+<ul>
+<li>接受来自客户端的网络连接。</li>
+<li>接受客户端发布的应用消息。</li>
+<li>处理客户端的订阅和取消订阅请求。</li>
+<li>转发应用消息给符合条件的已订阅客户端。</li>
+</ul>
+</blockquote>
+<p>订阅 SUBSCRIPTION</p>
+<blockquote>
+<p>订阅包含一个主题过滤器（Topic Filter）和一个最大的服务质量（QoS）等级。订阅与单个会话（Session）关联。会话可以包含多于一个的订阅。会话的每个订阅都有一个不同的主题过滤器。</p>
+</blockquote>
+<p>主题名 TOPIC NAME</p>
+<blockquote>
+<p>附加在应用消息上的一个标签，服务端已知且与订阅匹配。服务端发送应用消息的一个副本给每一个匹配的客户端订阅。</p>
+</blockquote>
+<p>主题过滤器 TOPIC FILTER</p>
+<blockquote>
+<p>订阅中包含的一个表达式，用于表示相关的一个或多个主题。主题过滤器可以使用通配符。</p>
+</blockquote>
+<p>会话 SESSION</p>
+<blockquote>
+<p>客户端和服务端之间的状态交互。一些会话持续时长与网络连接一样，另一些可以在客户端和服务端的多个连续网络连接间扩展。</p>
+</blockquote>
+<p>控制报文 MQTT CONTROL PACKET</p>
+<blockquote>
+<p>通过网络连接发送的信息数据包。MQTT规范定义了十四种不同类型的控制报文，其中一个（PUBLISH报文）用于传输应用消息。</p>
+</blockquote>
+<p>服务质量 QOS</p>
+<blockquote>
+<p>这是消息的模式，目前有3个值，分别代表不同的消息策略或者说质量</p>
+<ul>
+<li>0 : 只发送一次，不管成功与否。消耗最低。</li>
+<li>1 : 至少1次，保证到达，但是可能存在重复。</li>
+<li>2 : 只有一次，保证到达并且只有一次成功。消耗最高。</li>
+</ul>
+</blockquote>
+<p><a href="http://emqtt.com/clients#java" target="_blank" rel="noopener">客户端订阅-JAVA</a></p>
+<blockquote>
+<p><a href="https://github.com/eclipse/paho.mqtt.java" target="_blank" rel="noopener">Eclipse Paho</a></p>
+</blockquote>
+<h4 id="单向认证"><a href="#单向认证" class="headerlink" title="单向认证"></a>单向认证</h4><p>1) 将 cacert.pem 重命名为 cacert.crt<br>2) 加入JDK证书信任，jdk1.8.0_121\jre\lib\security目录下运行命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> keytool -import -<span class="built_in">alias</span> cacert -keystore cacerts -file 路径/cacert.crt</span></span><br></pre></td></tr></table></figure>
+<p>3) 源码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.FileNotFoundException;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.security.KeyManagementException;</span><br><span class="line"><span class="keyword">import</span> java.security.KeyStoreException;</span><br><span class="line"><span class="keyword">import</span> java.security.cert.CertificateException;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.eclipse.paho.client.mqttv3.MqttClient;</span><br><span class="line"><span class="keyword">import</span> org.eclipse.paho.client.mqttv3.MqttConnectOptions;</span><br><span class="line"><span class="keyword">import</span> org.eclipse.paho.client.mqttv3.MqttException;</span><br><span class="line"><span class="keyword">import</span> org.eclipse.paho.client.mqttv3.MqttMessage;</span><br><span class="line"><span class="keyword">import</span> org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MqttPublishSample</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> KeyManagementException, CertificateException, FileNotFoundException, IOException, KeyStoreException </span>&#123;</span><br><span class="line"></span><br><span class="line">        String topic        = <span class="string">"MQTT Examples"</span>;</span><br><span class="line">        String content      = <span class="string">"Message from MqttPublishSample"</span>;</span><br><span class="line">        <span class="keyword">int</span> qos             = <span class="number">2</span>;<span class="comment">//服务质量，G7中建议为0或者1</span></span><br><span class="line">        String broker       = <span class="string">"ssl://10.110.111.251:8883"</span>;</span><br><span class="line">        String clientId     = <span class="string">"JavaSample"</span>;</span><br><span class="line">        MemoryPersistence persistence = <span class="keyword">new</span> MemoryPersistence();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            MqttClient sampleClient = <span class="keyword">new</span> MqttClient(broker, clientId, persistence);</span><br><span class="line">            MqttConnectOptions connOpts = <span class="keyword">new</span> MqttConnectOptions();</span><br><span class="line">            connOpts.setCleanSession(<span class="keyword">true</span>);</span><br><span class="line">            System.out.println(<span class="string">"Connecting to broker: "</span>+broker);</span><br><span class="line">            sampleClient.connect(connOpts);</span><br><span class="line">            System.out.println(<span class="string">"Connected"</span>);</span><br><span class="line">            System.out.println(<span class="string">"Publishing message: "</span>+content);</span><br><span class="line">            MqttMessage message = <span class="keyword">new</span> MqttMessage(content.getBytes());</span><br><span class="line">            message.setQos(qos);</span><br><span class="line">            sampleClient.publish(topic, message);</span><br><span class="line">            System.out.println(<span class="string">"Message published"</span>);</span><br><span class="line">            sampleClient.disconnect();</span><br><span class="line">            System.out.println(<span class="string">"Disconnected"</span>);</span><br><span class="line">            System.exit(<span class="number">0</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span>(MqttException me) &#123;</span><br><span class="line">            System.out.println(<span class="string">"reason "</span>+me.getReasonCode());</span><br><span class="line">            System.out.println(<span class="string">"msg "</span>+me.getMessage());</span><br><span class="line">            System.out.println(<span class="string">"loc "</span>+me.getLocalizedMessage());</span><br><span class="line">            System.out.println(<span class="string">"cause "</span>+me.getCause());</span><br><span class="line">            System.out.println(<span class="string">"excep "</span>+me);</span><br><span class="line">            me.printStackTrace();</span><br><span class="line">        &#125; </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="双向认证"><a href="#双向认证" class="headerlink" title="双向认证"></a>双向认证</h4><p>1) 证书转换，将 client-key.pem 转换成 pkcs8 格式的证书</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> openssl pkcs8 -topk8 -inform PEM -<span class="keyword">in</span> client-key.pem -outform PEM -nocrypt -out client-key-pkcs8.pem</span></span><br><span class="line">将</span><br></pre></td></tr></table></figure>
+
+<p>2) 将 cacert.pem 重命名为 cacert.crt</p>
+<p>3) 将 client-cert.pem 重命名为 client-cert.crt</p>
+<p>4) 源码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.BufferedReader;</span><br><span class="line"><span class="keyword">import</span> java.io.FileInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStreamReader;</span><br><span class="line"><span class="keyword">import</span> java.security.KeyFactory;</span><br><span class="line"><span class="keyword">import</span> java.security.KeyStore;</span><br><span class="line"><span class="keyword">import</span> java.security.PrivateKey;</span><br><span class="line"><span class="keyword">import</span> java.security.SecureRandom;</span><br><span class="line"><span class="keyword">import</span> java.security.cert.CertificateFactory;</span><br><span class="line"><span class="keyword">import</span> java.security.cert.X509Certificate;</span><br><span class="line"><span class="keyword">import</span> java.security.interfaces.RSAPrivateKey;</span><br><span class="line"><span class="keyword">import</span> java.security.spec.PKCS8EncodedKeySpec;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.net.ssl.KeyManagerFactory;</span><br><span class="line"><span class="keyword">import</span> javax.net.ssl.SSLContext;</span><br><span class="line"><span class="keyword">import</span> javax.net.ssl.SSLSocketFactory;</span><br><span class="line"><span class="keyword">import</span> javax.net.ssl.TrustManagerFactory;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.commons.codec.binary.Base64;</span><br><span class="line"><span class="keyword">import</span> org.eclipse.paho.client.mqttv3.MqttClient;</span><br><span class="line"><span class="keyword">import</span> org.eclipse.paho.client.mqttv3.MqttConnectOptions;</span><br><span class="line"><span class="keyword">import</span> org.eclipse.paho.client.mqttv3.MqttException;</span><br><span class="line"><span class="keyword">import</span> org.eclipse.paho.client.mqttv3.MqttMessage;</span><br><span class="line"><span class="keyword">import</span> org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PahoTlsExample</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">connect</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">            String topic        = <span class="string">"MQTT Examples"</span>;</span><br><span class="line">            String content      = <span class="string">"Message from MqttPublishSample"</span>;</span><br><span class="line">            <span class="keyword">int</span> qos             = <span class="number">2</span>;</span><br><span class="line">            String broker       = <span class="string">"ssl://10.110.111.251:8883"</span>;</span><br><span class="line">            String clientId     = <span class="string">"JavaSample"</span>;</span><br><span class="line">            MemoryPersistence persistence = <span class="keyword">new</span> MemoryPersistence();</span><br><span class="line"></span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                MqttClient sampleClient = <span class="keyword">new</span> MqttClient(broker, clientId, persistence);</span><br><span class="line">                MqttConnectOptions connOpts = <span class="keyword">new</span> MqttConnectOptions();</span><br><span class="line">                connOpts.setCleanSession(<span class="keyword">true</span>);</span><br><span class="line">                SSLSocketFactory factory = <span class="keyword">null</span>;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    factory = getSSLSocktet(<span class="string">"F:/emq/cacert/cacert.crt"</span>,<span class="string">"F:/emq/cacert/client-cert.crt"</span>,<span class="string">"F:/emq/cacert/client-key-pkcs8.pem"</span>,<span class="string">"brt123"</span>);</span><br><span class="line">                &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">                    <span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">                connOpts.setSocketFactory(factory);</span><br><span class="line">                System.out.println(<span class="string">"Connecting to broker: "</span>+broker);</span><br><span class="line">                sampleClient.connect(connOpts);</span><br><span class="line">                System.out.println(<span class="string">"Connected"</span>);</span><br><span class="line">                System.out.println(<span class="string">"Publishing message: "</span>+content);</span><br><span class="line">                MqttMessage message = <span class="keyword">new</span> MqttMessage(content.getBytes());</span><br><span class="line">                message.setQos(qos);</span><br><span class="line">                sampleClient.publish(topic, message);</span><br><span class="line">                System.out.println(<span class="string">"Message published"</span>);</span><br><span class="line">                sampleClient.disconnect();</span><br><span class="line">                System.out.println(<span class="string">"Disconnected"</span>);</span><br><span class="line">                System.exit(<span class="number">0</span>);</span><br><span class="line">            &#125; <span class="keyword">catch</span>(MqttException me) &#123;</span><br><span class="line">                System.out.println(<span class="string">"reason "</span>+me.getReasonCode());</span><br><span class="line">                System.out.println(<span class="string">"msg "</span>+me.getMessage());</span><br><span class="line">                System.out.println(<span class="string">"loc "</span>+me.getLocalizedMessage());</span><br><span class="line">                System.out.println(<span class="string">"cause "</span>+me.getCause());</span><br><span class="line">                System.out.println(<span class="string">"excep "</span>+me);</span><br><span class="line">                me.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> SSLSocketFactory <span class="title">getSSLSocktet</span><span class="params">(String caPath,String crtPath, String keyPath, String password)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">            <span class="comment">// CA certificate is used to authenticate server</span></span><br><span class="line">            CertificateFactory cAf = CertificateFactory.getInstance(<span class="string">"X.509"</span>);</span><br><span class="line">            FileInputStream caIn = <span class="keyword">new</span> FileInputStream(caPath);</span><br><span class="line">            X509Certificate ca = (X509Certificate) cAf.generateCertificate(caIn);</span><br><span class="line">             KeyStore caKs = KeyStore.getInstance(<span class="string">"JKS"</span>);</span><br><span class="line">             caKs.load(<span class="keyword">null</span>, <span class="keyword">null</span>);</span><br><span class="line">             caKs.setCertificateEntry(<span class="string">"ca-certificate"</span>, ca);</span><br><span class="line">             TrustManagerFactory tmf = TrustManagerFactory.getInstance(<span class="string">"PKIX"</span>);</span><br><span class="line">             tmf.init(caKs);</span><br><span class="line"></span><br><span class="line">            CertificateFactory cf = CertificateFactory.getInstance(<span class="string">"X.509"</span>);</span><br><span class="line">            FileInputStream crtIn = <span class="keyword">new</span> FileInputStream(crtPath);</span><br><span class="line">            X509Certificate caCert = (X509Certificate) cf.generateCertificate(crtIn);</span><br><span class="line"></span><br><span class="line">            crtIn.close();</span><br><span class="line">            <span class="comment">// client key and certificates are sent to server so it can authenticate</span></span><br><span class="line">            <span class="comment">// us</span></span><br><span class="line">            KeyStore ks = KeyStore.getInstance(KeyStore.getDefaultType());</span><br><span class="line">            ks.load(<span class="keyword">null</span>, <span class="keyword">null</span>);</span><br><span class="line">            ks.setCertificateEntry(<span class="string">"certificate"</span>, caCert);</span><br><span class="line">            ks.setKeyEntry(<span class="string">"private-key"</span>, getPrivateKey(keyPath), password.toCharArray(),</span><br><span class="line">                    <span class="keyword">new</span> java.security.cert.Certificate[]&#123;caCert&#125;  );</span><br><span class="line">            KeyManagerFactory kmf = KeyManagerFactory.getInstance(<span class="string">"PKIX"</span>);</span><br><span class="line">            kmf.init(ks, password.toCharArray());</span><br><span class="line"></span><br><span class="line">            <span class="comment">// finally, create SSL socket factory</span></span><br><span class="line">            SSLContext context = SSLContext.getInstance(<span class="string">"TLSv1"</span>);</span><br><span class="line"></span><br><span class="line">            context.init(kmf.getKeyManagers(),tmf.getTrustManagers(), <span class="keyword">new</span> SecureRandom());</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> context.getSocketFactory();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> PrivateKey <span class="title">getPrivateKey</span><span class="params">(String path)</span> <span class="keyword">throws</span> Exception</span>&#123;  </span><br><span class="line"></span><br><span class="line">            org.apache.commons.codec.binary.Base64 base64=<span class="keyword">new</span> Base64();</span><br><span class="line">            <span class="keyword">byte</span>[] buffer=   base64.decode(getPem(path)); </span><br><span class="line"></span><br><span class="line">            PKCS8EncodedKeySpec keySpec= <span class="keyword">new</span> PKCS8EncodedKeySpec(buffer);</span><br><span class="line">            KeyFactory keyFactory= KeyFactory.getInstance(<span class="string">"RSA"</span>);  </span><br><span class="line">            <span class="keyword">return</span> (RSAPrivateKey) keyFactory.generatePrivate(keySpec);  </span><br><span class="line"></span><br><span class="line">        &#125; </span><br><span class="line"></span><br><span class="line">         <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> String <span class="title">getPem</span><span class="params">(String path)</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">                FileInputStream fin=<span class="keyword">new</span> FileInputStream(path);</span><br><span class="line">                BufferedReader br= <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(fin));  </span><br><span class="line">                String readLine= <span class="keyword">null</span>;  </span><br><span class="line">                StringBuilder sb= <span class="keyword">new</span> StringBuilder();  </span><br><span class="line">                <span class="keyword">while</span>((readLine= br.readLine())!=<span class="keyword">null</span>)&#123;  </span><br><span class="line">                    <span class="keyword">if</span>(readLine.charAt(<span class="number">0</span>)==<span class="string">'-'</span>)&#123;  </span><br><span class="line">                        <span class="keyword">continue</span>;  </span><br><span class="line">                    &#125;<span class="keyword">else</span>&#123;  </span><br><span class="line">                        sb.append(readLine);  </span><br><span class="line">                        sb.append(<span class="string">'\r'</span>);  </span><br><span class="line">                    &#125;  </span><br><span class="line">                &#125;  </span><br><span class="line">                fin.close();</span><br><span class="line">                <span class="keyword">return</span> sb.toString();</span><br><span class="line">            &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title='0' data-url='http://link.hhtjim.com/163/5146554.mp3'></li>
+                        
+                    
+                        
+                            <li title='1' data-url='http://link.hhtjim.com/qq/001faIUs4M2zna.mp3'></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class='side'>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#EMQ-2-0"><span class="toc-number">1.</span> <span class="toc-text">EMQ 2.0</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#MQTT-发布订阅模式简述"><span class="toc-number">1.1.</span> <span class="toc-text">MQTT 发布订阅模式简述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#EMQ安装"><span class="toc-number">1.2.</span> <span class="toc-text">EMQ安装</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#LINUX服务器安装-CENTOS"><span class="toc-number">1.2.1.</span> <span class="toc-text">LINUX服务器安装(CENTOS)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MQTT-EMQ-使用"><span class="toc-number">1.3.</span> <span class="toc-text">MQTT(EMQ)使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#关键字介绍"><span class="toc-number">1.3.1.</span> <span class="toc-text">关键字介绍</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#单向认证"><span class="toc-number">1.3.2.</span> <span class="toc-text">单向认证</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#双向认证"><span class="toc-number">1.3.3.</span> <span class="toc-text">双向认证</span></a></li></ol></li></ol></li></ol>
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</html>
